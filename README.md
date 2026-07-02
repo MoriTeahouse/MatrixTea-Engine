@@ -14,7 +14,7 @@ MatrixTea Engine 是為 RhythmClicker 打造的專屬遊戲引擎與運行基座
 
 - [src/MatrixTea.Engine.Core](src/MatrixTea.Engine.Core) - 核心運行時、節奏 session、判定、回放與服務註冊。
 - [src/MatrixTea.Engine.MonoGame](src/MatrixTea.Engine.MonoGame) - MonoGame host 基底。
-- [RhythmClicker](https://github.com/keeiv/RhythmClicker) - 已接入 MatrixTea 的 RhythmClicker 原始碼。
+- [RhythmClicker](https://github.com/MoriTeahouse/RhythmClicker) - 已接入 MatrixTea 的 RhythmClicker 原始碼。
 - [docs/overview.md](docs/overview.md) - 專案總覽。
 - [docs/architecture.md](docs/architecture.md) - 架構與模組設計。
 - [docs/development.md](docs/development.md) - 開發與維護指南。
