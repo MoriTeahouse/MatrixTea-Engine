@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MatrixTea.Engine.Core/MatrixTea.Engine.Core.csproj" />
+    <Project Path="src/MatrixTea.Engine.MonoGame/MatrixTea.Engine.MonoGame.csproj" />
+  </Folder>
+</Solution>
