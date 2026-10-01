@@ -1,0 +1,29 @@
+name: Engine validation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build runtime and host
+        run: dotnet build src/MatrixTea.Engine.MonoGame -c Release --nologo -warnaserror
+      - name: Build packaging CLI
+        run: dotnet build src/MatrixTea.Packaging.Cli -c Release --nologo -warnaserror
+      - name: Build graphical smoke probe
+        run: dotnet build tests/MatrixTea.Engine.HostSmoke -c Release --nologo -warnaserror
+      - name: Run core and packaging regressions
+        run: dotnet run --project tests/MatrixTea.Engine.Tests -c Release
+      - name: Build benchmark
+        run: dotnet build benchmarks/MatrixTea.Engine.Benchmarks -c Release --nologo -warnaserror
+      - name: Run headless example
+        run: dotnet run --project examples/MatrixTea.Headless -c Release

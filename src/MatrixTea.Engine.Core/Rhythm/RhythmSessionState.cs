@@ -16,11 +16,13 @@ public sealed class RhythmSessionState
 
     public void Apply(RhythmJudgementResult result)
     {
+        ArgumentNullException.ThrowIfNull(result);
+        if (result.Kind is < JudgementKind.Perfect or > JudgementKind.Miss || result.ScoreAwarded < 0 || !double.IsFinite(result.DeltaSeconds))
+            throw new ArgumentException("Invalid judgement result.", nameof(result));
         if (result.CountsAsHit)
         {
-            Score += result.ScoreAwarded;
-            Combo++;
-            HitCount++;
+            int score = checked(Score + result.ScoreAwarded), combo = checked(Combo + 1), hits = checked(HitCount + 1);
+            Score = score; Combo = combo; HitCount = hits;
             if (Combo > MaxCombo)
             {
                 MaxCombo = Combo;
@@ -28,11 +30,11 @@ public sealed class RhythmSessionState
         }
         else
         {
-            Combo = 0;
-            MissCount++;
+            int misses = checked(MissCount + 1);
+            Combo = 0; MissCount = misses;
         }
 
-        int total = HitCount + MissCount;
+        long total = (long)HitCount + MissCount;
         Accuracy = total == 0 ? 0d : (double)HitCount / total;
     }
 }

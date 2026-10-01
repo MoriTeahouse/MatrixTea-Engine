@@ -1,27 +1,18 @@
-# Contributing to MatrixTea Engine
+# 貢獻指南
 
-感謝你想一起改善 MatrixTea Engine。
+變更以共用模組穩定性、可重現驗證及 API 相容性為基本要求。
 
-## 開發原則
+Core 保持不依賴圖形框架；MonoGame adapter 負責 host；Packaging 負責 ATR。遊戲內容、帳號、雲端與 UI 保留於遊戲專案。
 
-- 以核心穩定性優先，任何新增功能都要先考慮是否會影響固定步進、判定準確度或回放一致性。
-- 盡量維持 core / host / game 三層分工，不要讓遊戲專屬邏輯回流到核心之外的共用模組。
-- 變更應該有明確的驗證方式，至少要能用 `dotnet build` 或對應子專案完成檢查。
+```sh
+dotnet build src/MatrixTea.Engine.MonoGame -c Release -warnaserror
+dotnet build src/MatrixTea.Packaging.Cli -c Release -warnaserror
+dotnet run --project tests/MatrixTea.Engine.Tests -c Release
+dotnet run --project examples/MatrixTea.Headless -c Release
+```
 
-## 提交流程
+圖形變更在可用桌面執行 HostSmoke。性能變更提供資料規模、Benchmark 及等價行為測試；生命週期變更提供初始化／清理失敗測試。外部遊戲測試不能取代引擎的獨立回歸。
 
-- 先在本機確認建置通過。
-- 若變更影響玩家行為，請附上簡短說明與驗證步驟。
-- 文件更新請與程式變更同步處理。
+提交描述問題、最終行為與驗證結果。公開 API、預設值及相容性變更同步更新文件；文件以開發者為讀者，使用中性技術敘述。程式風格依 .editorconfig。
 
-## 不應提交的內容
-
-- 帳號或憑證資料。
-- 統計資料庫、回放檔、發布輸出、暫存檔。
-- `bin`、`obj`、或其他生成內容。
-
-## 建議檢查
-
-- `dotnet build src/MatrixTea.Engine.Core/MatrixTea.Engine.Core.csproj`
-- `dotnet build src/MatrixTea.Engine.MonoGame/MatrixTea.Engine.MonoGame.csproj`
-- `dotnet build RhythmClicker/ClickerGame.csproj`
+不提交 bin、obj、artifacts、發布封裝、帳號、憑證、存檔、回放及私人資料。授權維持 MIT。

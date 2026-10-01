@@ -11,6 +11,10 @@ public sealed class RhythmJudgementEngine
     {
         Profile = profile ?? RhythmJudgementProfile.RhythmClickerDefault;
         Scoring = scoring ?? new RhythmScoringProfile();
+        if (Profile.PerfectWindow < TimeSpan.Zero || Profile.GreatWindow < Profile.PerfectWindow || Profile.GoodWindow < Profile.GreatWindow)
+            throw new ArgumentException("Judgement windows must be nonnegative and ordered Perfect <= Great <= Good.", nameof(profile));
+        if (Scoring.PerfectScore < 0 || Scoring.GreatScore < 0 || Scoring.GoodScore < 0)
+            throw new ArgumentException("Score awards must be nonnegative.", nameof(scoring));
     }
 
     public RhythmJudgementProfile Profile { get; }
@@ -19,6 +23,8 @@ public sealed class RhythmJudgementEngine
 
     public RhythmJudgementResult Judge(double noteTimeSeconds, double inputTimeSeconds)
     {
+        if (!double.IsFinite(noteTimeSeconds)) throw new ArgumentOutOfRangeException(nameof(noteTimeSeconds));
+        if (!double.IsFinite(inputTimeSeconds)) throw new ArgumentOutOfRangeException(nameof(inputTimeSeconds));
         double deltaSeconds = inputTimeSeconds - noteTimeSeconds;
         double absoluteDelta = Math.Abs(deltaSeconds);
 

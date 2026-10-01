@@ -9,6 +9,9 @@ public sealed class EngineContext
 
     public EngineContext(EngineOptions options, IEngineClock clock)
     {
+        ArgumentNullException.ThrowIfNull(options);
+        ArgumentNullException.ThrowIfNull(clock);
+        options.Validate();
         Options = options;
         Clock = clock;
         Metrics = new EngineMetrics();

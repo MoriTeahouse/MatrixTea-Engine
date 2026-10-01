@@ -9,6 +9,7 @@ public interface IEngineClock
     TimeSpan Delta { get; }
 
     long Tick { get; }
+    long TickFrequency => TimeSpan.TicksPerSecond;
 
     void Reset();
 
@@ -28,6 +29,7 @@ public sealed class HighResolutionEngineClock : IEngineClock
     public TimeSpan Delta { get; private set; }
 
     public long Tick => _stopwatch.ElapsedTicks;
+    public long TickFrequency => Stopwatch.Frequency;
 
     public void Reset()
     {
@@ -43,4 +45,17 @@ public sealed class HighResolutionEngineClock : IEngineClock
         _lastCapture = now;
         return Delta;
     }
+}
+
+/// <summary>Monotonic millisecond timing for hosts opting out of high-resolution capture.</summary>
+public sealed class SystemEngineClock : IEngineClock
+{
+    private long _origin = Environment.TickCount64;
+    private TimeSpan _lastCapture;
+    public TimeSpan Elapsed => TimeSpan.FromMilliseconds(Environment.TickCount64 - _origin);
+    public TimeSpan Delta { get; private set; }
+    public long Tick => Elapsed.Ticks;
+    public long TickFrequency => TimeSpan.TicksPerSecond;
+    public void Reset() { _origin = Environment.TickCount64; _lastCapture = Delta = TimeSpan.Zero; }
+    public TimeSpan Capture() { TimeSpan now = Elapsed; Delta = now - _lastCapture; _lastCapture = now; return Delta; }
 }

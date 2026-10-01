@@ -1,26 +1,9 @@
-# Overview
+# 專案總覽
 
-MatrixTea Engine 的設計重點不是做成單一龐大的遊戲框架，而是把 RhythmClicker 真正需要的高頻路徑先穩定下來，其他服務再以介面和適配層擴充。
+MatrixTea Engine 提供可獨立接入的遊戲執行模組，適用於節奏遊戲及需要固定步進、場景管理的 2D 遊戲。使用介面為 .NET 類別庫與封裝 CLI。
 
-## 設計目標
+Core 處理計時、場景、服務、節奏及檔案寫入；MonoGame adapter 提供桌面接入；Packaging 提供 ATR1。遊戲保留自身內容與平台服務。Core／host 提供 net6.0、net8.0，封裝及工具使用 net8.0。
 
-- 低延遲：節奏判定與更新循環使用固定步進與高精度時鐘。
-- 可維護：把場景、資料、服務與 host 分開。
-- 可擴充：核心不直接依賴 MonoGame 的具體實作。
-- 可移植：節奏模型與回放模型可跨專案共享。
+現有接入包含 RhythmClicker 的節奏判定及 Artelu 的場景／圖形 host。遊戲來源不包含於乾淨的引擎 clone，也不是引擎建置的必要依賴。獨立範例與測試位於 examples、tests。
 
-## 核心模組
-
-- Runtime：`EngineApplication`、`EngineContext`、`SceneStack`、`FramePacer`。
-- Rhythm：`RhythmBeatmap`、`RhythmJudgementEngine`、`RhythmSessionState`、`RhythmReplay`。
-- Services：`ServiceRegistry` 與 host 注入的外部服務。
-- Host：MonoGame 適配層提供視窗、圖形與輸入接線。
-
-## 與 RhythmClicker 的關係
-
-RhythmClicker 目前已採用共用 beatmap 資料模型，後續的下一步是把如下內容搬進 MatrixTea：
-
-- note 命中判定。
-- 場景轉換。
-- replay 記錄與播放。
-- 遊戲內低延遲時鐘與更新節奏。
+公開介面見 [README](../README.md)、[開發指南](development.md)；模組關係見 [架構](architecture.md)；量測見 [效能報告](performance.md)。
