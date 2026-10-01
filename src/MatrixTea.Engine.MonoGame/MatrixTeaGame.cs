@@ -1,4 +1,4 @@
-﻿using MatrixTea.Engine.Core;
+using MatrixTea.Engine.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -48,6 +48,7 @@ public abstract class MatrixTeaGame : Game
 
 	protected override void Update(GameTime gameTime)
 	{
+		if (!IsActive) { base.Update(gameTime); return; }
 		TimeSpan frameDelta = gameTime.ElapsedGameTime;
 		int updateCount = Engine.Pump(frameDelta);
 
@@ -67,6 +68,15 @@ public abstract class MatrixTeaGame : Game
 		OnDraw(gameTime);
 		Engine.Render(new MonoGameRenderSurface(GraphicsDevice, SpriteBatch));
 		base.Draw(gameTime);
+	}
+
+	protected override void UnloadContent()
+	{
+		Engine.Scenes.Clear(Engine.Context);
+		SpriteBatch?.Dispose();
+		SpriteBatch = null;
+		_contentLoaded = false;
+		base.UnloadContent();
 	}
 
 	protected virtual void OnLoadContent()

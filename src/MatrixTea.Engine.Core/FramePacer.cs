@@ -30,7 +30,7 @@ public sealed class FramePacer
             return;
         }
 
-        _accumulator += delta;
+        _accumulator += delta > TimeSpan.FromMilliseconds(250) ? TimeSpan.FromMilliseconds(250) : delta;
     }
 
     public int Consume(int maxSteps)
@@ -47,6 +47,9 @@ public sealed class FramePacer
             steps++;
         }
 
+        // Discard whole overdue steps instead of retaining a catch-up backlog.
+        if (_accumulator >= TargetStep)
+            _accumulator = TimeSpan.FromTicks(_accumulator.Ticks % TargetStep.Ticks);
         return steps;
     }
 }
