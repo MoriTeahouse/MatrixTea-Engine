@@ -2,5 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/MatrixTea.Engine.Core/MatrixTea.Engine.Core.csproj" />
     <Project Path="src/MatrixTea.Engine.MonoGame/MatrixTea.Engine.MonoGame.csproj" />
+    <Project Path="src/MatrixTea.Engine.Packaging/MatrixTea.Engine.Packaging.csproj" />
+    <Project Path="src/MatrixTea.Packaging.Cli/MatrixTea.Packaging.Cli.csproj" />
   </Folder>
 </Solution>

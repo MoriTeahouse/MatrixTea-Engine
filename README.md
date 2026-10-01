@@ -44,6 +44,10 @@ MatrixTea Core 與 MonoGame host 已可建置，RhythmClicker 也已接上共用
 
 完整規範請見 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
+## ATR 遊戲封裝
+
+新增獨立 .NET 8 封裝模組與 CLI，使用適應式 Brotli／Deflate、AES-256-GCM 和 HMAC-SHA-256。Core／MonoGame 的 .NET 6 相容性維持不變。格式、工具與防逆向限制見 [ATR1 文件](docs/atr-format.md)。
+
 ## License
 
 MatrixTea Engine 採用 MIT License，細節請見 [LICENSE](LICENSE)。
