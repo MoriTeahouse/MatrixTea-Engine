@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 MoriTeahouse (森之宿茶室)
 using MatrixTea.Engine.Core;
 using MatrixTea.Engine.Core.IO;
 using MatrixTea.Engine.Core.Rhythm;
@@ -172,7 +174,8 @@ finally
     string expected = Path.GetFullPath(Path.Combine(Path.GetTempPath(), "MatrixTeaEngineTests")) + Path.DirectorySeparatorChar;
     if (Path.GetFullPath(root).StartsWith(expected, StringComparison.OrdinalIgnoreCase)) Directory.Delete(root, true);
 }
-Console.WriteLine($"PASS: {checks} engine assertions; scene dispatch and empty miss polling allocate 0 bytes after warmup.");
+PlatformTests.Run(Check);
+Console.WriteLine($"PASS: {checks} engine assertions; scene dispatch, input capture and empty miss polling allocate 0 bytes after warmup.");
 
 sealed class Surface : IRenderSurface { }
 sealed record Note(int Id, double Time, int Column);

@@ -19,6 +19,9 @@ jobs:
         run: dotnet build src/MatrixTea.Engine.MonoGame -c Release --nologo -warnaserror
       - name: Build packaging CLI
         run: dotnet build src/MatrixTea.Packaging.Cli -c Release --nologo -warnaserror
+      - name: Build Windows desktop audio and text adapter
+        if: runner.os == 'Windows'
+        run: dotnet build src/MatrixTea.Engine.Desktop -c Release --nologo -warnaserror
       - name: Build graphical smoke probe
         run: dotnet build tests/MatrixTea.Engine.HostSmoke -c Release --nologo -warnaserror
       - name: Run core and packaging regressions

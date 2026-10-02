@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 MoriTeahouse (森之宿茶室)
 using System.Diagnostics;
 using System.Text.Json;
 using System.Runtime.InteropServices;

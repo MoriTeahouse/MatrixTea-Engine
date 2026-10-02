@@ -1,6 +1,9 @@
 <Project>
  <PropertyGroup>
   <Deterministic>true</Deterministic>
+  <Authors>MoriTeahouse</Authors>
+  <Copyright>Copyright (c) 2026 MoriTeahouse (森之宿茶室)</Copyright>
+  <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
  </PropertyGroup>
 </Project>

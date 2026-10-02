@@ -7,6 +7,10 @@ try {
         dotnet build $project -c Release --nologo -warnaserror
         if ($LASTEXITCODE -ne 0) { throw "Build failed: $project" }
     }
+    if ($IsWindows) {
+        dotnet build src/MatrixTea.Engine.Desktop -c Release --nologo -warnaserror
+        if ($LASTEXITCODE -ne 0) { throw 'Windows desktop adapter build failed.' }
+    }
     $arguments = @('run','--project','tests/MatrixTea.Engine.Tests','-c','Release','--')
     if ($LegacyAtr) { $arguments += @('--legacy-atr',[System.IO.Path]::GetFullPath($LegacyAtr)) }
     dotnet @arguments

@@ -15,6 +15,8 @@
 
 Core 不依賴圖形套件。MonoGame 使用 DesktopGL，部署平台仍須有相容圖形驅動。
 
+Windows 的串流音訊與字形接入可額外參考 MatrixTea.Engine.Desktop（net8.0-windows），接入範例及所有權見 [平台模組指南](platform-modules.md)。跨平台 host 可保留 Core／MonoGame 並自行提供相應服務。公開引擎與以其 AGPL 授權形成的結合作品適用 AGPL-3.0-only；授權政策見 [授權說明](licensing.md)。
+
 ## 自訂 host
 
 Pump(delta) 只回傳可執行的固定步數；host 按回傳數呼叫 Update，再於實際渲染時呼叫 Render。
@@ -103,7 +105,7 @@ JSON 資料欄位不變。音訊同步、輸入排程及 replay 播放器由遊�
 
 AtomicFile.WriteText 不配置整份 UTF-8 位元組副本。Write／WriteAsync 直接將序列化資料寫入暫存 stream，回呼不接管 stream 所有權。序列化例外或 async 取消會清除暫存檔且不替換原檔。
 
-替換前 flush，前一版本保存在 .bak。同一目的檔的多個寫入由呼叫端序列化；API 不提供多程序交易、讀取恢復或目錄同步。網路檔案系統与硬體斷電耐受依平台而定。
+替換前 flush，前一版本保存在 .bak。同一目的檔的多個寫入由呼叫端序列化；API 不提供多程序交易、讀取恢復或目錄同步。網路檔案系統與硬體斷電耐受依平台而定。
 
 ## 診斷與驗證
 

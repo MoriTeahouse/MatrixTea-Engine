@@ -1,0 +1,7 @@
+MatrixTea Engine
+Copyright (c) 2026 MoriTeahouse (森之宿茶室)
+SPDX-License-Identifier: AGPL-3.0-only
+
+The public engine source is licensed under GNU AGPL version 3 only.
+Third-party dependencies retain their respective copyrights and licenses.
+See LICENSE and docs/licensing.md.

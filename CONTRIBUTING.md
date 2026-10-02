@@ -15,4 +15,4 @@ dotnet run --project examples/MatrixTea.Headless -c Release
 
 提交描述問題、最終行為與驗證結果。公開 API、預設值及相容性變更同步更新文件；文件以開發者為讀者，使用中性技術敘述。程式風格依 .editorconfig。
 
-不提交 bin、obj、artifacts、發布封裝、帳號、憑證、存檔、回放及私人資料。授權維持 MIT。
+不提交 bin、obj、artifacts、發布封裝、帳號、憑證、存檔、回放及私人資料。公開程式採 AGPL-3.0-only，保留 MoriTeahouse（森之宿茶室）著作權及適用的第三方聲明。第三方貢獻依公開授權接收，不自動納入自有作品的內部閉源授權。

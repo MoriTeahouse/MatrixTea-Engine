@@ -1,6 +1,8 @@
 # MatrixTea Engine
 
-MatrixTea Engine 是模組化的 .NET 遊戲執行基座，提供固定步進、場景生命週期、服務管理、節奏判定、原子檔案寫入及 ATR 遊戲封裝。圖形接入層使用 MonoGame DesktopGL；核心與封裝模組可獨立使用。
+![MatrixTea](branding/matrixtea.svg)
+
+MatrixTea Engine 由 MoriTeahouse（森之宿茶室）開發，提供固定步進、場景生命週期、輸入事件緩衝、節奏判定、音訊時間軸、冒險碰撞與任務、原子存檔及 ATR 遊戲封裝。圖形接入層使用 MonoGame DesktopGL；核心與封裝模組可獨立使用。
 
 ## 模組
 
@@ -8,10 +10,11 @@ MatrixTea Engine 是模組化的 .NET 遊戲執行基座，提供固定步進、
 |---|---|---|
 | [MatrixTea.Engine.Core](src/MatrixTea.Engine.Core) | .NET 6 / .NET 8 | 計時、固定步進、場景、服務、診斷、節奏與通用檔案寫入 |
 | [MatrixTea.Engine.MonoGame](src/MatrixTea.Engine.MonoGame) | .NET 6 / .NET 8 | MonoGame 視窗、圖形裝置與引擎循環接入 |
+| [MatrixTea.Engine.Desktop](src/MatrixTea.Engine.Desktop) | .NET 8 / Windows | 裝置播放位置、串流音訊與中文字形快取 |
 | [MatrixTea.Engine.Packaging](src/MatrixTea.Engine.Packaging) | .NET 8 | ATR1 讀寫、壓縮與 AES-GCM 驗證 |
 | [MatrixTea.Packaging.Cli](src/MatrixTea.Packaging.Cli) | .NET 8 | 命令列封裝工具 |
 
-Core 不依賴 MonoGame。遊戲內容、輸入映射、音訊排程、UI、物理及網路由遊戲或其他服務提供；此專案不包含視覺編輯器。
+Core 不依賴 MonoGame。遊戲負責內容、輸入映射、UI、網路與平台整合。Desktop 是 Windows 專用的選用模組；此專案不包含視覺編輯器。
 
 ## 建置與驗證
 
@@ -40,6 +43,10 @@ GitHub Actions 在 Windows／Linux 建置各模組、編譯圖形探針並執行
 - MonoGame host 使用可變更新，由引擎管理固定步進；渲染介面在內容載入後重用。
 - 節奏查找使用欄位索引；可變 Notes 清單保留相容掃描路徑。
 - AtomicFile 提供文字、串流及非同步原子替換，保留前一版本備份。
+- ActionInputBuffer 以固定容量保留帶時間戳的按下邊緣，避免固定更新重複消耗與焦點恢復後的幽靈輸入。
+- PlaybackTimeline 管理倒數、暫停、恢復與校正；Windows 音訊接入讀取輸出裝置位置，避免解碼預讀時間造成判定偏移。
+- CollisionGrid 查詢鄰近格子並分段移動；QuestJournal 驗證前置任務圖、保留未知存檔識別碼。
+- ProceduralScore 產生可重現的原創 PCM 曲譜；GlyphTextRenderer 按字元及字級快取，不隨分數或顏色建立整行紋理。
 
 完整 API 約定見 [開發指南](docs/development.md) 與 [架構](docs/architecture.md)。可執行範例位於 [examples/MatrixTea.Headless](examples/MatrixTea.Headless)。
 
@@ -62,5 +69,7 @@ dotnet run --project src/MatrixTea.Packaging.Cli -- unpack ./game.atr ./output
 - [驗證紀錄](docs/validation.md)：本機回歸、整合範圍及持續整合。
 - [RhythmClicker 接入](docs/rhythmclicker-adoption.md)：可變清單與索引遷移。
 - [貢獻指南](CONTRIBUTING.md)：程式與文件變更要求。
+- [平台模組指南](docs/platform-modules.md)：冒險、節奏、Windows 音訊與文字接入。
+- [授權政策](docs/licensing.md)：AGPL-3.0-only、自有閉源作品及第三方元件。
 
-授權：[MIT](LICENSE)。
+著作權：MoriTeahouse（森之宿茶室）。公開版本授權：[AGPL-3.0-only](LICENSE)。第三方元件及閉源作品接入政策見 [授權說明](docs/licensing.md)。

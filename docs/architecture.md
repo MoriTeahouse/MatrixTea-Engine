@@ -6,12 +6,15 @@ MatrixTea Engine 分為 Core、MonoGame adapter、Packaging 與遊戲接入層�
 Game / custom host
  ├── Core
  ├── MonoGame adapter ── Core + MonoGame DesktopGL
+ ├── Desktop (Windows) ── MonoGame adapter + NAudio + System.Drawing
  └── Packaging
 CLI ── Packaging
 Tests / benchmarks ── 對應模組
 ```
 
 Core 不持有圖形框架型別；Packaging 不依賴遊戲內容或 GPU。遊戲負責具體場景、UI、輸入、音訊與儲存格式。
+
+冒險與節奏共用同一核心，避免另立兩套生命週期。Adventure 提供格子碰撞及任務前置圖；Rhythm 提供索引判定、單調時間軸及延遲校正；Input 將 host 擷取與固定步消耗解耦。Desktop 將 Windows 裝置及字型依賴限制在獨立模組。
 
 EngineApplication 擁有 FramePacer、SceneStack、EngineContext。FramePacer 以整數 tick 計算更新數及分數餘量，丟棄超額工作。Context 提供設定、單調時鐘、服務與度量；host 驅動 Pump／Update／Render。
 
