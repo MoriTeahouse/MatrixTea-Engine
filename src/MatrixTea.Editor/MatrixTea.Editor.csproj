@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>WinExe</OutputType><TargetFramework>net8.0-windows</TargetFramework><UseWPF>true</UseWPF><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><ApplicationIcon>../../branding/matrixtea.ico</ApplicationIcon><Version>0.1.0</Version><AssemblyName>MatrixTeaEditor</AssemblyName></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../MatrixTea.Editor.Core/MatrixTea.Editor.Core.csproj" /><ProjectReference Include="../MatrixTea.Engine.Desktop/MatrixTea.Engine.Desktop.csproj" /><Resource Include="../../branding/matrixtea.png" Link="Assets/engine-icon.png" /><Content Include="../../LICENSE" Link="LICENSE" CopyToOutputDirectory="PreserveNewest" /><Content Include="../../NOTICE" Link="NOTICE" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+</Project>

@@ -26,6 +26,14 @@ jobs:
         run: dotnet build tests/MatrixTea.Engine.HostSmoke -c Release --nologo -warnaserror
       - name: Run core and packaging regressions
         run: dotnet run --project tests/MatrixTea.Engine.Tests -c Release
+      - name: Run editor document and export regressions
+        run: dotnet run --project tests/MatrixTea.Editor.Tests -c Release
+      - name: Build Windows visual editor
+        if: runner.os == 'Windows'
+        run: dotnet build src/MatrixTea.Editor -c Release --nologo -warnaserror
+      - name: Build SVG icon converter
+        if: runner.os == 'Windows'
+        run: dotnet build tools/MatrixTea.IconTool -c Release --nologo -warnaserror
       - name: Build benchmark
         run: dotnet build benchmarks/MatrixTea.Engine.Benchmarks -c Release --nologo -warnaserror
       - name: Run headless example

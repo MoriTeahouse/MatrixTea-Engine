@@ -5,10 +5,13 @@
     <Project Path="src/MatrixTea.Engine.Desktop/MatrixTea.Engine.Desktop.csproj" />
     <Project Path="src/MatrixTea.Engine.Packaging/MatrixTea.Engine.Packaging.csproj" />
     <Project Path="src/MatrixTea.Packaging.Cli/MatrixTea.Packaging.Cli.csproj" />
+    <Project Path="src/MatrixTea.Editor.Core/MatrixTea.Editor.Core.csproj" />
+    <Project Path="src/MatrixTea.Editor/MatrixTea.Editor.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/MatrixTea.Engine.Tests/MatrixTea.Engine.Tests.csproj" />
     <Project Path="tests/MatrixTea.Engine.HostSmoke/MatrixTea.Engine.HostSmoke.csproj" />
+    <Project Path="tests/MatrixTea.Editor.Tests/MatrixTea.Editor.Tests.csproj" />
   </Folder>
   <Folder Name="/benchmarks/">
     <Project Path="benchmarks/MatrixTea.Engine.Benchmarks/MatrixTea.Engine.Benchmarks.csproj" />
@@ -16,4 +19,5 @@
   <Folder Name="/examples/">
     <Project Path="examples/MatrixTea.Headless/MatrixTea.Headless.csproj" />
   </Folder>
+  <Folder Name="/tools/"><Project Path="tools/MatrixTea.IconTool/MatrixTea.IconTool.csproj" /></Folder>
 </Solution>

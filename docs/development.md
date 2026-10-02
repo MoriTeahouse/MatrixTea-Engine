@@ -2,6 +2,12 @@
 
 本文件定義 MatrixTea Engine 的建置、接入方式、生命週期與驗證約定。共用模組不包含遊戲特定內容。
 
+## 可視化內容製作
+
+MatrixTea Studio 位於 `src/MatrixTea.Editor`，使用 Windows WPF；平台獨立的 `MatrixTea.Editor.Core` 負責 schema=1 專案驗證、交易歷史、原子儲存及 ATR 內容匯出。地圖預覽使用 CollisionGrid／QuestJournal，譜面預覽使用 RhythmPlaySession 與實際裝置位置。遊戲 host 可直接載入 `.mtproject` 並建立共用引擎狀態；專案不包含引擎程式碼或編譯後的遊戲。
+
+操作、資料限制、資源搬移及建置範例見 [編輯器指南](editor.md)。完整 solution 現在包含 Windows 編輯器與 SVG 圖標工具；Linux 使用下方個別模組命令及 Editor.Tests 驗證，不建置 WPF 專案。應用程式圖標以 README SVG 為唯一來源，工具輸出 PNG／BMP／七尺寸 ICO，不另行重繪。
+
 ## 依賴
 
 .NET 8 SDK 可建置個別專案；SLNX solution 需要 .NET 9.0.200 以上 SDK。Core／MonoGame 同時輸出 net6.0、net8.0；Packaging／CLI 使用 net8.0。新遊戲可使用 net8.0，既有 net6.0 遊戲仍有相容目標。測試及範例在 .NET 8 執行，不要求 .NET 6 Runtime。

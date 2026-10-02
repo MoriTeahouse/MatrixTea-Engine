@@ -13,8 +13,18 @@ MatrixTea Engine 由 MoriTeahouse（森之宿茶室）開發，提供固定步�
 | [MatrixTea.Engine.Desktop](src/MatrixTea.Engine.Desktop) | .NET 8 / Windows | 裝置播放位置、串流音訊與中文字形快取 |
 | [MatrixTea.Engine.Packaging](src/MatrixTea.Engine.Packaging) | .NET 8 | ATR1 讀寫、壓縮與 AES-GCM 驗證 |
 | [MatrixTea.Packaging.Cli](src/MatrixTea.Packaging.Cli) | .NET 8 | 命令列封裝工具 |
+| [MatrixTea.Editor.Core](src/MatrixTea.Editor.Core) | .NET 8 | 專案資料、交易歷史、引擎預覽與內容匯出 |
+| [MatrixTea.Editor](src/MatrixTea.Editor) | .NET 8 / Windows | MatrixTea Studio 可視化地圖、物件、任務與四軌譜面編輯器 |
 
-Core 不依賴 MonoGame。遊戲負責內容、輸入映射、UI、網路與平台整合。Desktop 是 Windows 專用的選用模組；此專案不包含視覺編輯器。
+Core 不依賴 MonoGame。遊戲負責內容、輸入映射、UI、網路與平台整合。Desktop 是 Windows 專用的選用模組。MatrixTea Studio 0.1.0-test.1 提供可視化編輯、復原／重做、存讀、實際遊玩預覽與 ATR 內容匯出；Windows 發布包自帶 .NET 8。操作與首版範圍見 [編輯器指南](docs/editor.md)。
+
+```powershell
+dotnet run --project src/MatrixTea.Editor -c Release
+dotnet run --project tests/MatrixTea.Editor.Tests -c Release
+pwsh -File scripts/Publish-Editor.ps1
+```
+
+編輯器應用程式圖標由本頁 `branding/matrixtea.svg` 直接轉為多尺寸 ICO，重新產生方式為 `python scripts/Generate-Branding.py`。
 
 ## 建置與驗證
 
@@ -70,6 +80,7 @@ dotnet run --project src/MatrixTea.Packaging.Cli -- unpack ./game.atr ./output
 - [RhythmClicker 接入](docs/rhythmclicker-adoption.md)：可變清單與索引遷移。
 - [貢獻指南](CONTRIBUTING.md)：程式與文件變更要求。
 - [平台模組指南](docs/platform-modules.md)：冒險、節奏、Windows 音訊與文字接入。
+- [可視化編輯器](docs/editor.md)：地圖、物件、任務、譜面、專案格式、預覽與發布。
 - [授權政策](docs/licensing.md)：AGPL-3.0-only、自有閉源作品及第三方元件。
 
 著作權：MoriTeahouse（森之宿茶室）。公開版本授權：[AGPL-3.0-only](LICENSE)。第三方元件及閉源作品接入政策見 [授權說明](docs/licensing.md)。

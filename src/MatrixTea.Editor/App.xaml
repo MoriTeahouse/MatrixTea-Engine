@@ -1,0 +1,12 @@
+<Application x:Class="MatrixTea.Editor.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Startup="OnStartup">
+  <Application.Resources>
+    <SolidColorBrush x:Key="Ink" Color="#0E1B24" /><SolidColorBrush x:Key="Panel" Color="#172B35" /><SolidColorBrush x:Key="Mint" Color="#98DFBC" />
+    <Style TargetType="Window"><Setter Property="Background" Value="{StaticResource Ink}" /><Setter Property="Foreground" Value="#EEE7D9" /><Setter Property="FontFamily" Value="Segoe UI, Microsoft JhengHei" /><Setter Property="FontSize" Value="14" /></Style>
+    <Style TargetType="Button"><Setter Property="Foreground" Value="#EEE7D9" /><Setter Property="Background" Value="#29434B" /><Setter Property="Padding" Value="14,9" /><Setter Property="Margin" Value="3" /><Setter Property="BorderThickness" Value="0" /><Setter Property="Cursor" Value="Hand" /><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" /></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter Property="Background" Value="#3D6662" /></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.4" /></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+    <Style TargetType="TextBox"><Setter Property="Background" Value="#0D222A" /><Setter Property="Foreground" Value="#EEE7D9" /><Setter Property="CaretBrush" Value="#98DFBC" /><Setter Property="BorderBrush" Value="#36515A" /><Setter Property="Padding" Value="8" /><Setter Property="Margin" Value="0,4,0,10" /></Style>
+    <Style TargetType="ListBox"><Setter Property="Background" Value="#11242D" /><Setter Property="Foreground" Value="#EEE7D9" /><Setter Property="BorderThickness" Value="0" /><Setter Property="Padding" Value="6" /></Style>
+    <Style TargetType="ListBoxItem"><Setter Property="Padding" Value="8,9" /></Style>
+    <Style TargetType="ComboBox"><Setter Property="Foreground" Value="#14252C" /><Setter Property="Padding" Value="6" /><Setter Property="Margin" Value="0,4,0,8" /><Setter Property="MinHeight" Value="32" /></Style>
+    <Style TargetType="TabItem"><Setter Property="Foreground" Value="#162C31" /><Setter Property="Padding" Value="22,9" /></Style>
+  </Application.Resources>
+</Application>
