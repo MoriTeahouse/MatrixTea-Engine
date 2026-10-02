@@ -1,6 +1,6 @@
 # MatrixTea Engine
 
-![MatrixTea](branding/matrixtea.svg)
+<img src="branding/matrixtea.svg" alt="MatrixTea" width="96" />
 
 MatrixTea Engine 由 MoriTeahouse（森之宿茶室）開發，提供固定步進、場景生命週期、輸入事件緩衝、節奏判定、音訊時間軸、冒險碰撞與任務、原子存檔及 ATR 遊戲封裝。圖形接入層使用 MonoGame DesktopGL；核心與封裝模組可獨立使用。
 
